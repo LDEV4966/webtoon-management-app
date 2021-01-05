@@ -3,10 +3,12 @@ import Profile from "routes/Profile";
 import Home from "routes/Home";
 import Auth from "routes/Auth";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Navigation from "./Navigation";
 
 const AppRouter = ({ isLoggedIn }) => {
   return (
     <Router>
+      {isLoggedIn && <Navigation/>}
       <Switch>
         {isLoggedIn ? (
           <>
