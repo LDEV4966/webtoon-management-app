@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NaverDayInfo from "components/NaverDayInfo";
+import Loading from "components/Loading";
 const Naver = () => {
   const axios = require("axios");
   const cheerio = require("cheerio");
@@ -41,13 +42,16 @@ const Naver = () => {
     setDataInit(true);
   };
   return (
-    <div>
-      <h2>Naver Webtoon</h2>
-      <div>
-        { dataInit ? (
+    <div id="naver-mainscreen">
+      <h2 className="webtoon_site__title">Naver Webtoon</h2>
+      <div className="list_area daily_all">
+        {dataInit ? (
           webtoonsKeys.map((day) => (
-          <NaverDayInfo webtoonList={webtoons[day]} key = {day} day = {day}/>
-        ))) : ("Data Loading...")}
+            <NaverDayInfo webtoonList={webtoons[day]} key={day} day={day} />
+          ))
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );
