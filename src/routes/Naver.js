@@ -5,14 +5,21 @@ const Naver = () => {
   let URL = `/webtoon/weekday.nhn`;
   const [dataInit, setDataInit] = useState(true);
   const [webtoons, setWebtoons] = useState([]);
-  let toons = [];
+  let toonsObj = {
+    mon: [],
+    tue: [],
+    wed: [],
+    thu: [],
+    fri: [],
+    sat: [],
+    sun: [],
+  };
   useEffect(() => {
-    let all = [];
     if (dataInit === true) {
       getHtml();
       setDataInit(false);
     }
-  });
+  }, []);
   const getHtml = async () => {
     const html = await axios.get(URL);
     const $ = await cheerio.load(html.data);
@@ -28,9 +35,9 @@ const Naver = () => {
         link: link,
         day: day,
       };
-      toons = [...toons, webtoon];
+      toonsObj[day] = [...toonsObj[day], webtoon];
     });
-    console.log(toons);
+    console.log(toonsObj);
   };
   return <div>Naver</div>;
 };

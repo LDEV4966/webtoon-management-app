@@ -1,0 +1,7 @@
+npm install 
+npm install react-router-dom
+npm install --save firebase
+npm install axios
+npm install cheerio
+
+proxy : 설정해줌 동일 host 값 맞추기 위해
