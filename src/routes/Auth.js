@@ -68,6 +68,7 @@ const Auth = () => {
     <button onClick={socialLogin} name="google">
       Continue with Google
     </button>
+    {socialLoginError}
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import NaverDayInfo from "components/NaverDayInfo";
 const Naver = () => {
   const axios = require("axios");
   const cheerio = require("cheerio");
   let URL = `/webtoon/weekday.nhn`;
-  const [dataInit, setDataInit] = useState(true);
-  const [webtoons, setWebtoons] = useState([]);
-  let toonsObj = {
+  const [dataInit, setDataInit] = useState(false);
+  const [webtoons, setWebtoons] = useState({
     mon: [],
     tue: [],
     wed: [],
@@ -13,11 +13,11 @@ const Naver = () => {
     fri: [],
     sat: [],
     sun: [],
-  };
+  });
+  const webtoonsKeys = Object.keys(webtoons);
   useEffect(() => {
-    if (dataInit === true) {
+    if (dataInit === false) {
       getHtml();
-      setDataInit(false);
     }
   }, []);
   const getHtml = async () => {
@@ -29,16 +29,27 @@ const Naver = () => {
       let link = $(element).find("a.title").attr("href");
       link = `https://comic.naver.com${link}`;
       const day = link.slice(-3);
-      let webtoon = {
+      const webtoon = {
         title: title,
         img: img,
         link: link,
         day: day,
       };
-      toonsObj[day] = [...toonsObj[day], webtoon];
+      webtoons[day] = [...webtoons[day], webtoon];
     });
-    console.log(toonsObj);
+    console.log(webtoons); //showing data
+    setDataInit(true);
   };
-  return <div>Naver</div>;
+  return (
+    <div>
+      <h2>Naver Webtoon</h2>
+      <div>
+        { dataInit ? (
+          webtoonsKeys.map((day) => (
+          <NaverDayInfo webtoonList={webtoons[day]} key = {day} day = {day}/>
+        ))) : ("Data Loading...")}
+      </div>
+    </div>
+  );
 };
 export default Naver;
