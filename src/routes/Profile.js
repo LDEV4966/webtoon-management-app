@@ -3,17 +3,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 const Profile = () => {
-    const history = useHistory();
-    const onLogOutClick = async () =>{
-        await authService.signOut();
-        history.push("/");
-    }
-    return (
-        <div>
-            My Profile
-            <button onClick ={onLogOutClick}>Log out</button>
-        </div>
-    )
-}
+  return (
+    <div>
+      <span></span>
+    </div>
+  );
+};
 
 export default Profile;

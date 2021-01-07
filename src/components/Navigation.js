@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <nav id="navigation-screen">
-      <span className="app-title">Webtoon Management App</span>
+      <span className="app-title">WEBTOON MANAGER</span>
       <ul className="navigation">
         <li className="navigation__list">
           <Link to="/">Home</Link>

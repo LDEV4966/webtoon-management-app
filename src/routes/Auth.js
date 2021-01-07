@@ -40,49 +40,56 @@ const Auth = () => {
   const toggleNewAccount = () => setNewAccount((prev) => !prev);
   return (
     <div id="auth-mainscreen">
-      <span className="app-title">Webtoon Management App</span>
+      <span className="app-title">WEBTOON MANAGER</span>
       <form onSubmit={onSubmit} className="login-form">
-        <input
-          className="login-form__email"
-          onChange={onChange}
-          value={email}
-          name="email"
-          type="text"
-          placeholder="email"
-          required
-        />
-        <input
-          className="login-form__password"
-          onChange={onChange}
-          value={password}
-          name="password"
-          type="password"
-          placeholder="password"
-          required
-        />
-
-        <input
-          className="login-form__submit-btn"
-          type="submit"
-          value={newAccount ? "Create Account" : "Sign In"}
-        />
-        {error && <span className="error-code">{error}</span>}
+        <div>
+          <div className="login-form__account">
+            <span>Email : </span>
+            <input
+              className="login-form__account-input"
+              onChange={onChange}
+              value={email}
+              name="email"
+              type="text"
+              placeholder="email"
+              required
+            />
+          </div>
+          <div className="login-form__account">
+            <span>password : </span>
+            <input
+              className="login-form__account-input"
+              onChange={onChange}
+              value={password}
+              name="password"
+              type="password"
+              placeholder="password"
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <input
+            className="login-form__submit-btn"
+            type="submit"
+            value={newAccount ? "Create Account" : "Sign In"}
+          />
+        </div>
       </form>
-      <span onClick={toggleNewAccount} className="login-form__btn-change">
-        <button className="login-form__submit-btn">
-          {newAccount ? "Sign In" : "Create Account"}
-        </button>
-      </span>
-      <button
-        onClick={socialLogin}
-        className="login-form__social-login"
-        name="google"
-      >
-        Continue with Google
-      </button>
+      {error && <span className="error-code">"{error}"</span>}
       {socialLoginError && (
-        <span className="error-code">{socialLoginError}</span>
+        <span className="error-code">"{socialLoginError}"</span>
       )}
+      <div className="other-login">
+        <span onClick={toggleNewAccount} className="other-login-btn">
+          <button>{newAccount ? "Sign In" : "Create Account"}</button>
+        </span>
+        <span className="other-login-btn social-login-btn">
+          <button onClick={socialLogin} name="google">
+            Continue with Google
+          </button>
+        </span>
+      </div>
     </div>
   );
 };

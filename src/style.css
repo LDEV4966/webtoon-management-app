@@ -18,13 +18,11 @@ body {
 button {
   outline: none;
   border: none;
-  background-color: white;
   cursor: pointer;
 }
 input[type="submit"] {
   border: none;
   cursor: pointer;
-  background-color: white;
 }
 
 /*Navigation Bat*/
@@ -42,7 +40,7 @@ input[type="submit"] {
   align-items: center;
 }
 .navigation {
-  width: 60%;
+  width: 55%;
   padding: 15px;
   display: flex;
   flex-direction: row;
@@ -71,10 +69,10 @@ input[type="submit"] {
 .app-title {
   color: rgba(122, 122, 122, 1);
   font-weight: 500;
-  font-size: 28px;
+  font-size: 25px;
   font-style: italic;
-  width: 40%;
   text-align: center;
+  width: 45%;
 }
 
 /*Auth main screen*/
@@ -84,6 +82,98 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.login-form > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+.login-form > div:nth-child(2) {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-form__account {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login-form__account > span {
+  display: block;
+  width: 20%;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+}
+.login-form__account-input[name="email"] {
+  margin-bottom: 15px;
+}
+.login-form__account-input {
+  width: 80%;
+  height: 55px;
+  padding: 1px 17px;
+  border: none;
+  font-size: 18px;
+}
+.login-form__submit-btn {
+  width: 70%;
+  height: 100%;
+  border-radius: 7px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background-color: #519ed4;
+  white-space: normal;
+}
+.other-login {
+  width: 32%;
+  margin: 0 auto;
+}
+.other-login-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.other-login-btn button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 33%;
+  margin-bottom: 30px;
+  width: 32%;
+  height: 15px;
+  white-space: normal;
+  padding: 20px;
+  top: 48%;
+  font-size: 20px;
+  border-radius: 7px;
+  color: white;
+  background-color: #519ed4;
+}
+.social-login-btn button {
+  top: 54%;
+}
+.error-code {
+  color: tomato;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 15px;
 }
 
 /*Home main screen*/
@@ -132,6 +222,9 @@ input[type="submit"] {
   justify-content: center;
   align-items: center;
 }
+.webttoon_site__page-inner {
+  background-color: white;
+}
 .webttoon_site__page-inner a img {
   width: 150px;
   height: 150px;
@@ -153,6 +246,9 @@ input[type="submit"] {
 #naver-mainscreen {
   padding: 0px 100px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .daily_all {
   border: none;
@@ -160,6 +256,7 @@ input[type="submit"] {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 100vh;
 }
 .daily_all .lodaing {
   height: 60%;
@@ -174,7 +271,7 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 50px;
 }
 .col {
