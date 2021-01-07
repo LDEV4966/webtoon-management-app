@@ -6,7 +6,7 @@ const Naver = () => {
   const cheerio = require("cheerio");
   let URL = `/webtoon/weekday.nhn`;
   const [dataInit, setDataInit] = useState(false);
-  const [webtoons, setWebtoons] = useState({
+  let [webtoons, setWebtoons] = useState({
     mon: [],
     tue: [],
     wed: [],
@@ -24,13 +24,16 @@ const Naver = () => {
   const getHtml = async () => {
     const html = await axios.get(URL);
     const $ = await cheerio.load(html.data);
+    let id = 0;
     $("div.daily_all div.col div.col_inner ul li").each((i, element) => {
       const title = $(element).find("div.thumb a img").attr("title");
       const img = $(element).find("div.thumb a img").attr("src");
       let link = $(element).find("a.title").attr("href");
       link = `https://comic.naver.com${link}`;
       const day = link.slice(-3);
+      id = id + 1;
       const webtoon = {
+        id: id,
         title: title,
         img: img,
         link: link,
@@ -38,7 +41,6 @@ const Naver = () => {
       };
       webtoons[day] = [...webtoons[day], webtoon];
     });
-    console.log(webtoons); //showing data
     setDataInit(true);
   };
   return (

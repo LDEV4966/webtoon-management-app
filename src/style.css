@@ -1,24 +1,160 @@
 @import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
+
 * {
   box-sizing: border-box;
+  text-decoration: none;
+  color: black;
 }
 html,
 body {
   background-color: white;
   height: 100%;
-  width: 100%;
+  background-color: #f5f6f7;
 }
 #root {
   height: 100%;
+  padding-top: 160px;
+}
+button {
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+input[type="submit"] {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+/*Navigation Bat*/
+
+#navigation-screen {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  box-shadow: 0px 5px 5px rgba(122, 122, 122, 0.2);
+  padding: 15px 200px;
+  display: flex;
+  align-items: center;
+}
+.navigation {
+  width: 60%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.navigation__list:first-child {
+  display: flex;
+  justify-content: flex-start;
+}
+.navigation__list {
+  width: 20%;
+}
+.navigation__list a {
+  text-decoration: none;
+  font-size: 20px;
+  color: rgb(68, 67, 67);
+}
+.navigation__list a:hover {
+  color: black;
+  font-weight: 800;
+}
+.navigation__list button {
+  font-size: 20px;
+}
+.app-title {
+  color: rgba(122, 122, 122, 1);
+  font-weight: 500;
+  font-size: 28px;
+  font-style: italic;
+  width: 40%;
+  text-align: center;
+}
+
+/*Auth main screen*/
+#auth-mainscreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Home main screen*/
+
+#home-mainscreen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#home-mainscreen h3 {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+#home-mainscreen nav {
   width: 100%;
 }
+.webtoon_site__pages {
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  justify-content: flex-start;
+  padding: 20px;
+}
+.webtoon_site__page {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.webttoon_site__page-inner {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 2px 3px 2px 2px rgba(122, 122, 122, 0.3);
+}
+.webtoon_site__page-empty {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgb(133, 133, 133);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.webttoon_site__page-inner a img {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.webttoon_site__page-inner a img:hover {
+  will-change: transform;
+  animation: hover-ani 1s ease-in-out backwards;
+}
+#home-mainscreen .webtoon_site__title {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 15px 0px;
+}
+
 /* Naver webtoon page*/
+
 #naver-mainscreen {
-  padding: 60px 100px;
+  padding: 0px 100px;
   height: 100%;
 }
 .daily_all {
-  height: 100%;
   border: none;
   margin: 0 auto;
   display: flex;
@@ -33,6 +169,7 @@ body {
   font-weight: 500;
   font-size: 20px;
 }
+
 .webtoon_site__title {
   display: flex;
   justify-content: center;
@@ -43,10 +180,11 @@ body {
 .col {
   border: none;
   border-top: 1px solid #d6d6d6;
-  border-right: 1px solid #d6d6d6;
+  border-right: 2px solid #d6d6d6;
   display: flex;
   flex-direction: column;
   padding: 0px 10px;
+  background-color: white;
 }
 .col:last-child {
   border-right: none;
@@ -60,7 +198,7 @@ body {
   text-transform: uppercase;
 }
 .col_inner {
-  background-color: rgba(153, 152, 152, 0.2);
+  background-color: white;
 }
 
 .thumb {
@@ -71,8 +209,42 @@ body {
   justify-content: center;
   width: 100px;
 }
-.thumb__title {
+.thumb .favorite-btn {
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.thumb .favorite-btn i {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  color: red;
   margin-top: 2px;
+}
+.thumb__link img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 2px 3px 2px 2px rgba(122, 122, 122, 0.3);
+  border-radius: 8px;
+}
+.thumb__link img:hover {
+  will-change: transform;
+  animation: hover-ani 1s ease-in-out backwards;
+}
+@keyframes hover-ani {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: none;
+  }
+}
+.thumb__title {
+  margin-top: 5px;
   display: block;
   width: 100px;
   height: 14px;
@@ -80,9 +252,17 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 600;
   font-size: 13px;
 }
+.favorite-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 /*Loading Page*/
+
 .circular {
   position: relative;
   width: 100px;
