@@ -44,7 +44,7 @@ const Auth = () => {
       <form onSubmit={onSubmit} className="login-form">
         <div>
           <div className="login-form__account">
-            <span>Email : </span>
+            <span>Email </span>
             <input
               className="login-form__account-input"
               onChange={onChange}
@@ -56,7 +56,7 @@ const Auth = () => {
             />
           </div>
           <div className="login-form__account">
-            <span>password : </span>
+            <span>Password </span>
             <input
               className="login-form__account-input"
               onChange={onChange}

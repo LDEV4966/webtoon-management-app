@@ -10,7 +10,11 @@ const Home = () => {
           <div className="webtoon_site__page">
             <div className="webttoon_site__page-inner">
               <Link to="/naver">
-                <img src="https://play-lh.googleusercontent.com/yEh_3Tn28fJWRW6q9GkiUjl6YKNHAllQLEeQ63gS4rF5hpobUbic0jq4bS6BfP80g1E" />
+                <img
+                  src="https://play-lh.googleusercontent.com/yEh_3Tn28fJWRW6q9GkiUjl6YKNHAllQLEeQ63gS4rF5hpobUbic0jq4bS6BfP80g1E"
+                  alt="naver-webtoon"
+                  title="naver-webtoon"
+                />
               </Link>
             </div>
             <span className="webtoon_site__title">Naver</span>
