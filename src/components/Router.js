@@ -6,7 +6,7 @@ import Auth from "routes/Auth";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./Navigation";
 
-const AppRouter = ({ isLoggedIn }) => {
+const AppRouter = ({ isLoggedIn , userObj }) => {
   return (
     <Router>
       {isLoggedIn && <Navigation />}
@@ -17,10 +17,10 @@ const AppRouter = ({ isLoggedIn }) => {
               <Home />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile userObj={userObj}/>
             </Route>
             <Route exact path="/naver">
-              <Naver />
+              <Naver userObj={userObj}/>
             </Route>
           </>
         ) : (

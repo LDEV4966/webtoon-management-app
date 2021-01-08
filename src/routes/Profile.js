@@ -1,9 +1,10 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({userObj}) => {
+  const webtoonSites = ["Naver"];
   return (
     <div>
-      <span></span>
+      <span>My Webtoon</span>
     </div>
   );
 };
