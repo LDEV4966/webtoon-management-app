@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import NaverDayInfo from "components/NaverDayInfo";
+import WebtoonsDayInfo from "components/WebtoonsDayInfo";
 import Loading from "components/Loading";
-const Naver = ({userObj}) => {
+const Naver = ({ userObj }) => {
   const axios = require("axios");
   const cheerio = require("cheerio");
   let URL = `/webtoon/weekday.nhn`;
   const [dataInit, setDataInit] = useState(false);
+  const siteName = "naver";
   let [webtoons, setWebtoons] = useState({
     mon: [],
     tue: [],
@@ -41,6 +42,7 @@ const Naver = ({userObj}) => {
       };
       webtoons[day] = [...webtoons[day], webtoon];
     });
+    console.log(webtoons);
     setDataInit(true);
   };
   return (
@@ -49,7 +51,13 @@ const Naver = ({userObj}) => {
       <div className="list_area daily_all">
         {dataInit ? (
           webtoonsKeys.map((day) => (
-            <NaverDayInfo webtoonList={webtoons[day]} key={day} day={day} userObj={userObj} />
+            <WebtoonsDayInfo
+              webtoonList={webtoons[day]}
+              key={day}
+              day={day}
+              userObj={userObj}
+              siteName={siteName}
+            />
           ))
         ) : (
           <Loading />
