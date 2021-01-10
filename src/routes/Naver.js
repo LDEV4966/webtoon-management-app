@@ -7,7 +7,7 @@ const Naver = ({ userObj }) => {
   let URL = `/webtoon/weekday.nhn`;
   const [dataInit, setDataInit] = useState(false);
   const siteName = "naver";
-  let [webtoons, setWebtoons] = useState({
+  const [webtoons, setWebtoons] = useState({
     mon: [],
     tue: [],
     wed: [],
@@ -42,7 +42,7 @@ const Naver = ({ userObj }) => {
       };
       webtoons[day] = [...webtoons[day], webtoon];
     });
-    console.log(webtoons);
+
     setDataInit(true);
   };
   return (
