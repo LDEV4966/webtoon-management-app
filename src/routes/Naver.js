@@ -39,9 +39,14 @@ const Naver = ({ userObj }) => {
         link: link,
         day: day,
       };
-      webtoons[day] = [...webtoons[day], webtoon];
+      setWebtoons(
+        (prev) => {
+          return{
+          ...prev,
+          [day] : [...prev[day],webtoon],
+        }}
+      )
     });
-
     setDataInit(true);
   };
   return (
