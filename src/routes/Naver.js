@@ -6,7 +6,6 @@ const Naver = ({ userObj }) => {
   const cheerio = require("cheerio");
   let URL = `/webtoon/weekday.nhn`;
   const [dataInit, setDataInit] = useState(false);
-  const siteName = "naver";
   const [webtoons, setWebtoons] = useState({
     mon: [],
     tue: [],
@@ -56,7 +55,7 @@ const Naver = ({ userObj }) => {
               key={day}
               day={day}
               userObj={userObj}
-              siteName={siteName}
+              siteName= "naver"
             />
           ))
         ) : (
