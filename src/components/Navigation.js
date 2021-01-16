@@ -15,10 +15,7 @@ const Navigation = () => {
       <span className="app-title">WEBTOON MANAGER</span>
       <ul className="navigation">
         <li className="navigation__list">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="navigation__list">
-          <Link to="/profile">My Profile</Link>
+          <Link to="/">My Profile</Link>
         </li>
         <li className="navigation__list">
           <button onClick={onClick}>Log out</button>

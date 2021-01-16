@@ -1,28 +1,20 @@
-import { dbService } from "fbase";
-import React from "react";
-const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName }) => {
-  const addToFirebase = async (event) => {
-    const {
-      currentTarget: { parentElement },
-    } = event;
-    const thumbLink = parentElement.firstChild;
-    const thumbImg = thumbLink.firstChild;
-    const targetWebtoonObj = {
-      link: thumbLink.href,
-      img: thumbImg.src,
-      title: thumbImg.title,
-      day: thumbImg.alt,
-    };
-    await dbService
-      .collection(userObj.uid)
-      .doc(siteName) // 이 정보는 현재 Naverdayinfo라서 그렇지, WebtoonSiteDayinfo 로 바꾸어서  WebtoonSite 이름을 가져 올거임.
-      .collection(day)
-      .doc(targetWebtoonObj.title)
-      .set(targetWebtoonObj);
-  };
+import React, { useEffect, useState } from "react";
+import Badge from "./Badge";
+const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName, favorite }) => {
+  const [todayDay, setTodayDay] = useState(false);
+  useEffect(() => {
+    const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    let today = new Date();
+    let todayYear = today.getFullYear(); // 년도
+    let todayMonth = today.getMonth() + 1; // 월
+    let todayDate = today.getDate(); // 날짜
+    if (day === days[today.getDay() - 1]) {
+      setTodayDay(true);
+    }
+  }, []);
   return (
-    <div className="col">
-      <h3 className="day"> {day} </h3>
+    <div className={"col" + (todayDay ? " today-col" : "")}>
+      <h3 className={"day"}> {day} </h3>
       <div className="col_inner">
         <ul>
           {webtoonList.map((webtoon, counter) => {
@@ -33,11 +25,12 @@ const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName }) => {
                     <img src={webtoon.img} title={webtoon.title} alt={day} />
                   </a>
                   <span className="thumb__title">{webtoon.title}</span>
-                  {siteName && (
-                    <span className="favorite-area" onClick={addToFirebase}>
-                      <i className="fas fa-heart" title={webtoon.title}></i>
-                    </span>
-                  )}
+                  <Badge
+                    key={webtoon.id}
+                    favorite={favorite}
+                    siteName={siteName}
+                    userObj={userObj}
+                  />
                 </div>
               </li>
             );

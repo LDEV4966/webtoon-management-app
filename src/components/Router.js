@@ -1,12 +1,11 @@
 import React from "react";
 import Profile from "routes/Profile";
-import Home from "routes/Home";
 import Naver from "routes/Naver";
 import Auth from "routes/Auth";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./Navigation";
 
-const AppRouter = ({ isLoggedIn , userObj }) => {
+const AppRouter = ({ isLoggedIn, userObj }) => {
   return (
     <Router>
       {isLoggedIn && <Navigation />}
@@ -14,13 +13,10 @@ const AppRouter = ({ isLoggedIn , userObj }) => {
         {isLoggedIn ? (
           <>
             <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/profile">
-              <Profile userObj={userObj}/>
+              <Profile userObj={userObj} />
             </Route>
             <Route exact path="/naver">
-              <Naver userObj={userObj}/>
+              <Naver userObj={userObj} />
             </Route>
           </>
         ) : (

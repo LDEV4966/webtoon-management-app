@@ -1,3 +1,4 @@
+import AltNavigation from "components/AltNavigation";
 import WebtoonsDayInfo from "components/WebtoonsDayInfo";
 import { dbService } from "fbase";
 import React, { useEffect, useState, useCallback } from "react";
@@ -6,6 +7,7 @@ const webtoonSites = ["naver"]; // 웹툰사이트를 추가할때마다 확인�
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 const Profile = ({ userObj }) => {
+  console.log(userObj.uid);
   const [dataInit, setDataInit] = useState(false);
   const [myWebtoons, setMyWebtoons] = useState({});
   const getFromFirestore = useCallback(() => {
@@ -33,7 +35,6 @@ const Profile = ({ userObj }) => {
   }, [myWebtoons, userObj]);
 
   useEffect(() => {
-    console.log("MOUNT");
     getFromFirestore();
     return () => {
       // ComponentDidUnmount.
@@ -42,7 +43,9 @@ const Profile = ({ userObj }) => {
 
   return (
     <div className="profile-mainscreen">
-      {console.log("RENDERING")}
+      <div className="webtoon_site__nav">
+        <AltNavigation myWebtoons={myWebtoons} />
+      </div>
       <h2 className="webtoon_site__title">My Webtoon</h2>
       <div className="list_area daily_all">
         {dataInit
@@ -58,6 +61,7 @@ const Profile = ({ userObj }) => {
                         day={day}
                         userObj={userObj}
                         siteName={siteName}
+                        favorite={false}
                       />
                     ) : undefined
                   )}

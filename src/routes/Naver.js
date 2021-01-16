@@ -61,6 +61,7 @@ const Naver = ({ userObj }) => {
               day={day}
               userObj={userObj}
               siteName= "naver"
+              favorite = {true}
             />
           ))
         ) : (

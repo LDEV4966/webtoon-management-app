@@ -181,40 +181,41 @@ input[type="submit"] {
 
 /*Home main screen*/
 
-#home-mainscreen {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#home-mainscreen h3 {
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 32px;
-  margin-bottom: 50px;
-}
-#home-mainscreen nav {
+#alt-navigation-mainscreen {
+  position: fixed;
+  top: -10px;
+  padding: 50px 10%;
   width: 100%;
+  height: 150px;
+  z-index: 3;
+  background-color: #f5f6f7;
+  display: flex;
+}
+#alt-navigation-mainscreen nav {
+  width: 60%;
+  height: 100px;
+  background-color: rgba(122, 122, 122, 0.5);
+  border-radius: 20px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-bottom: 10px;
 }
 .webtoon_site__pages {
   display: flex;
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   justify-content: flex-start;
-  padding: 20px;
 }
 .webtoon_site__page {
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-right: 10px;
 }
 .webttoon_site__page-inner {
-  width: 150px;
-  height: 150px;
+  width: 49px;
+  height: 49px;
   border-radius: 10px;
-  box-shadow: 2px 3px 2px 2px rgba(122, 122, 122, 0.3);
+  box-shadow: 1px 2px 1px 1px rgba(122, 122, 122, 0.2);
 }
 .webtoon_site__page-empty {
   width: 100%;
@@ -229,8 +230,8 @@ input[type="submit"] {
   background-color: white;
 }
 .webttoon_site__page-inner a img {
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   border-radius: 10px;
 }
@@ -238,10 +239,11 @@ input[type="submit"] {
   will-change: transform;
   animation: hover-ani 1s ease-in-out backwards;
 }
-#home-mainscreen .webtoon_site__title {
-  font-size: 23px;
-  font-weight: 500;
-  margin: 15px 0px;
+
+/* My profile webtoon page*/
+
+.profile-mainscreen {
+  padding: 80px 0px;
 }
 
 /* Naver webtoon page*/
@@ -292,6 +294,10 @@ input[type="submit"] {
 .col:last-child {
   border-right: none;
 }
+.today-col {
+  color: white;
+  background-color: #3a3a3a;
+}
 .col .day {
   text-align: center;
   color: rgba(0, 0, 0, 0.7);
@@ -300,14 +306,20 @@ input[type="submit"] {
   margin: 10px 0px;
   text-transform: uppercase;
 }
+.today-col .day {
+  color: #fdcb00;
+}
 .col_inner {
   background-color: white;
+}
+.today-col .col_inner {
+  background-color: transparent;
 }
 
 .thumb {
   display: flex;
   flex-direction: column;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
   align-items: center;
   justify-content: center;
   width: 100px;
@@ -335,7 +347,7 @@ input[type="submit"] {
   }
 }
 .thumb__title {
-  margin-top: 5px;
+  margin-top: 10px;
   display: block;
   width: 100px;
   height: 14px;
@@ -343,8 +355,11 @@ input[type="submit"] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 13px;
+}
+.today-col .thumb__title {
+  color: #fdcb00;
 }
 .favorite-area {
   width: 100%;
