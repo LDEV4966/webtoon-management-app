@@ -11,9 +11,9 @@ const Auth = () => {
     event.preventDefault();
     try {
       if (newAccount) {
-        await authService.createUserWithEmailAndPassword(email, password);
-      } else {
         await authService.signInWithEmailAndPassword(email, password);
+      } else {
+        await authService.createUserWithEmailAndPassword(email, password);
       }
     } catch (error) {
       setError(error.message);
@@ -72,7 +72,7 @@ const Auth = () => {
           <input
             className="login-form__submit-btn"
             type="submit"
-            value={newAccount ? "Create Account" : "Sign In"}
+            value={newAccount ? "Sign In" : "Create Account"}
           />
         </div>
       </form>
@@ -82,7 +82,7 @@ const Auth = () => {
       )}
       <div className="other-login">
         <span onClick={toggleNewAccount} className="other-login-btn">
-          <button>{newAccount ? "Sign In" : "Create Account"}</button>
+          <button>{newAccount ? "Create Account" : "Sign In"}</button>
         </span>
         <span className="other-login-btn social-login-btn">
           <button onClick={socialLogin} name="google">

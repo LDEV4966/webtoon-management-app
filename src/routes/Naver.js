@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import WebtoonsDayInfo from "components/WebtoonsDayInfo";
 import Loading from "components/Loading";
 const Naver = ({ userObj }) => {
@@ -16,12 +16,7 @@ const Naver = ({ userObj }) => {
     sun: [],
   });
   const webtoonsKeys = Object.keys(webtoons);
-  useEffect(() => {
-    if (dataInit === false) {
-      getHtml();
-    }
-  }, []);
-  const getHtml = async () => {
+  const getHtml = useCallback(async () => {
     const html = await axios.get(URL);
     const $ = await cheerio.load(html.data);
     let id = 0;
@@ -39,16 +34,21 @@ const Naver = ({ userObj }) => {
         link: link,
         day: day,
       };
-      setWebtoons(
-        (prev) => {
-          return{
+      setWebtoons((prev) => {
+        return {
           ...prev,
-          [day] : [...prev[day],webtoon],
-        }}
-      )
+          [day]: [...prev[day], webtoon],
+        };
+      });
     });
     setDataInit(true);
-  };
+  }, [URL,axios,cheerio]);
+  useEffect(() => {
+    if (dataInit === false) {
+      getHtml();
+    }
+    return ()=>{};
+  }, [dataInit, getHtml]);
   return (
     <div id="naver-mainscreen">
       <h2 className="webtoon_site__title">Naver Webtoon</h2>
@@ -60,8 +60,8 @@ const Naver = ({ userObj }) => {
               key={day}
               day={day}
               userObj={userObj}
-              siteName= "naver"
-              favorite = {true}
+              siteName="naver"
+              favorite={true}
             />
           ))
         ) : (

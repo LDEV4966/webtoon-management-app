@@ -3,11 +3,10 @@ import WebtoonsDayInfo from "components/WebtoonsDayInfo";
 import { dbService } from "fbase";
 import React, { useEffect, useState, useCallback } from "react";
 
-const webtoonSites = ["naver"]; // 웹툰사이트를 추가할때마다 확인해줘야 함.
+const webtoonSites = ["naver"]; // I have to check it everytime add webtoon site
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 const Profile = ({ userObj }) => {
-  console.log(userObj.uid);
   const [dataInit, setDataInit] = useState(false);
   const [myWebtoons, setMyWebtoons] = useState({});
   const getFromFirestore = useCallback(() => {
@@ -32,14 +31,12 @@ const Profile = ({ userObj }) => {
       });
     });
     setDataInit(true);
-  }, [myWebtoons, userObj]);
+  }, [userObj]);
 
   useEffect(() => {
     getFromFirestore();
-    return () => {
-      // ComponentDidUnmount.
-    };
-  }, []);
+    return () => {};
+  }, [userObj,getFromFirestore]); //if userObj is changed, mount again that means it can executes getFromFirestore(); again with different User-uid.
 
   return (
     <div className="profile-mainscreen">
@@ -49,8 +46,7 @@ const Profile = ({ userObj }) => {
       <h2 className="webtoon_site__title">My Webtoon</h2>
       <div className="list_area daily_all">
         {dataInit
-          ? // 여기안에서 데이터를 변경하지말고 이미 변경이완료된 데이터를 불러와서 사용하는것이 좋습니다
-            Object.keys(myWebtoons).map((siteName) => (
+          ? Object.keys(myWebtoons).map((siteName) => (
               <>
                 <div className="devide_by_webtoon_site">
                   {days.map((day) =>

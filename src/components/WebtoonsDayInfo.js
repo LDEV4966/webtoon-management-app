@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Badge from "./Badge";
 const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName, favorite }) => {
   const [todayDay, setTodayDay] = useState(false);
-  useEffect(() => {
-    const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  const setTodayInfo = useCallback(() => {
+    const days = ["sun", "tue", "wed", "thu", "fri", "sat", "mon"];
     let today = new Date();
-    let todayYear = today.getFullYear(); // 년도
-    let todayMonth = today.getMonth() + 1; // 월
-    let todayDate = today.getDate(); // 날짜
-    if (day === days[today.getDay() - 1]) {
+    //let todayYear = today.getFullYear(); // 년도
+    //let todayMonth = today.getMonth() + 1; // 월
+    //let todayDate = today.getDate(); // 날짜
+    if (day === days[today.getDay()]) {
       setTodayDay(true);
     }
-  }, []);
+  }, [day]);
+  useEffect(() => {
+    setTodayInfo();
+  }, [setTodayInfo]);
   return (
     <div className={"col" + (todayDay ? " today-col" : "")}>
       <h3 className={"day"}> {day} </h3>
