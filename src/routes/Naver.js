@@ -19,20 +19,21 @@ const Naver = ({ userObj }) => {
   const getHtml = useCallback(async () => {
     const html = await axios.get(URL);
     const $ = await cheerio.load(html.data);
-    let id = 0;
     $("div.daily_all div.col div.col_inner ul li").each((i, element) => {
       const title = $(element).find("div.thumb a img").attr("title");
       const img = $(element).find("div.thumb a img").attr("src");
       let link = $(element).find("a.title").attr("href");
       link = `https://comic.naver.com${link}`;
       const day = link.slice(-3);
-      id = id + 1;
+      const getIndex1 = link.indexOf("=");
+      const getIndex2 = link.indexOf("&");
+      const titleId = link.substring(getIndex1 + 1, getIndex2);
       const webtoon = {
-        id: id,
-        title: title,
-        img: img,
-        link: link,
-        day: day,
+        titleId, // 작업필요
+        title,
+        img,
+        link,
+        day,
       };
       setWebtoons((prev) => {
         return {
@@ -42,12 +43,12 @@ const Naver = ({ userObj }) => {
       });
     });
     setDataInit(true);
-  }, [URL,axios,cheerio]);
+  }, [URL, axios, cheerio]);
   useEffect(() => {
     if (dataInit === false) {
       getHtml();
     }
-    return ()=>{};
+    return () => {};
   }, [dataInit, getHtml]);
   return (
     <div id="naver-mainscreen">

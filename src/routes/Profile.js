@@ -9,6 +9,7 @@ const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 const Profile = ({ userObj }) => {
   const [dataInit, setDataInit] = useState(false);
   const [myWebtoons, setMyWebtoons] = useState({});
+
   const getFromFirestore = useCallback(() => {
     webtoonSites.forEach((siteName) => {
       days.forEach(async (day) => {
@@ -36,7 +37,7 @@ const Profile = ({ userObj }) => {
   useEffect(() => {
     getFromFirestore();
     return () => {};
-  }, [userObj,getFromFirestore]); //if userObj is changed, mount again that means it can executes getFromFirestore(); again with different User-uid.
+  }, [userObj, getFromFirestore]); //if userObj is changed, mount again that means it can executes getFromFirestore(); again with different User-uid.
 
   return (
     <div className="profile-mainscreen">

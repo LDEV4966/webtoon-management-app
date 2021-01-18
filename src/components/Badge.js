@@ -1,7 +1,11 @@
 import { dbService } from "fbase";
-import React from "react";
-
-const Badge = ({ favorite, siteName, userObj }) => {
+import React, { useCallback, useEffect, useState } from "react";
+const Badge = ({ favorite, siteName, userObj, titleId }) => {
+  const axios = require("axios");
+  const cheerio = require("cheerio");
+  let URL = `/webtoon/list.nhn?titleId=${titleId}`;
+  const [updateDay, setUpdataDay] = useState("");
+  const [isUpdate, setIsUpdate] = useState(false);
   const addToFirebase = async (event) => {
     const {
       target: {
@@ -10,15 +14,19 @@ const Badge = ({ favorite, siteName, userObj }) => {
     } = event;
     const thumbLink = parentElement.firstChild;
     const thumbImg = thumbLink.firstChild;
+    const index = thumbImg.alt.indexOf("/");
+    const id = thumbImg.alt.substring(0, index);
+    const day = thumbImg.alt.substring(index + 1);
     const targetWebtoonObj = {
       link: thumbLink.href,
       img: thumbImg.src,
       title: thumbImg.title,
-      day: thumbImg.alt,
+      titleId: id,
+      day: day,
     };
     await dbService
       .collection(userObj.uid)
-      .doc(siteName) // 이 정보는 현재 Naverdayinfo라서 그렇지, WebtoonSiteDayinfo 로 바꾸어서  WebtoonSite 이름을 가져 올거임.
+      .doc(siteName)
       .collection(targetWebtoonObj.day)
       .doc(targetWebtoonObj.title)
       .set(targetWebtoonObj);
@@ -31,9 +39,13 @@ const Badge = ({ favorite, siteName, userObj }) => {
     } = event;
     const thumbLink = parentElement.firstChild;
     const thumbImg = thumbLink.firstChild;
+    const index = thumbImg.alt.indexOf("/");
+    const day = thumbImg.alt.substring(index + 1);
     const targetWebtoonObj = {
+      link: thumbLink.href,
+      img: thumbImg.src,
       title: thumbImg.title,
-      day: thumbImg.alt,
+      day: day,
     };
     const ok = window.confirm(
       `Are you sure, you want to delete '${targetWebtoonObj.title}' ?`
@@ -41,18 +53,40 @@ const Badge = ({ favorite, siteName, userObj }) => {
     if (ok) {
       await dbService
         .collection(userObj.uid)
-        .doc(siteName) // 이 정보는 현재 Naverdayinfo라서 그렇지, WebtoonSiteDayinfo 로 바꾸어서  WebtoonSite 이름을 가져 올거임.
+        .doc(siteName)
         .collection(targetWebtoonObj.day)
         .doc(targetWebtoonObj.title)
         .delete();
     }
   };
+
+  const updateInfo = useCallback(async () => {
+    const html = await axios.get(URL);
+    const $ = await cheerio.load(html.data);
+    setUpdataDay($("td.num:first").text());
+    if ($("td.title:first").children("img").attr("alt") === "UP") {
+      setIsUpdate(true);
+    }
+  }, [URL, axios, cheerio]);
+
+  useEffect(() => {
+    if (favorite === false) {
+      updateInfo();
+    }
+  }, [updateInfo, favorite]);
+
   return (
     <span className="favorite-area">
       {favorite ? (
-        <i className="fas fa-heart" onClick={addToFirebase}></i>
+        <>
+          <i className="fas fa-heart" onClick={addToFirebase}></i>
+        </>
       ) : (
-        <i className="far fa-trash-alt" onClick={delteToFirebase}></i>
+        <>
+          {isUpdate && <span className="update-badge">UP</span>}
+          <span className="update-day">{updateDay}</span>
+          <i className="far fa-trash-alt" onClick={delteToFirebase}></i>
+        </>
       )}
     </span>
   );
