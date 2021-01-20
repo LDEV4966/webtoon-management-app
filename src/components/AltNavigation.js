@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const emptyBox = [0, 1, 2, 3, 4];
+const emptyBox = [0, 1, 2, 3, 4, 5];
 const AltNavigation = () => {
   return (
     <div id="alt-navigation-mainscreen">

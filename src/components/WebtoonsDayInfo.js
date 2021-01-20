@@ -35,6 +35,7 @@ const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName, favorite }) => {
                     favorite={favorite}
                     siteName={siteName}
                     userObj={userObj}
+                    day={day}
                   />
                 </div>
               </li>
