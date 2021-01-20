@@ -21,5 +21,10 @@ html,css,javascript,react hooks
 2. realtime-database
 - based on Firebase 
 
+### npm module
 
+*  npm install react-router-dom
+*  npm install --save firebase
+*  npm install axios
+*  npm install cheerio
 
