@@ -11,10 +11,8 @@ html,css,javascript,react hooks
 ### 기능 
 
 1. 구독중인 웹툰의 업데이트 상태를 realtime으로 알려주기.
-2. 홈화면 : 원하는 웹툰 사이트의 웹툰 정보를 요일별로 보여 주며, 즐겨찾기 추가를 가능하게 하기.
-3. 마이프로필 : 즐겨추가 된 웹툰들을 { 해당 웹툰사이트 : [요일별] } 로 보여주기.
-4. 마이프로필 : 웹툰 클릭시 해당사이트로 이동 가능하게 하기.
-5. 마이프로필 : 즐겨찾기된 웹툰을 삭제하기 가능하게 하기.
+2. 마이프로필 : 원하는 웹툰 사이트의 웹툰 정보를 요일별로 보여 주며, 원하지 않는 웹툰은 삭제 가능.
+3. 웹툰 사이트 : 해당 사이트에서 제공하는 웹툰들의 정보를 보여주며, 마이프로필에 즐겨 찾기 되어있는 웹툰과 그렇지 않은 웹툰을 실시간으로 비교해서 보여준다
 
 ### 기술
 
@@ -23,5 +21,10 @@ html,css,javascript,react hooks
 2. realtime-database
 - based on Firebase 
 
+### npm module
 
+*  npm install react-router-dom
+*  npm install --save firebase
+*  npm install axios
+*  npm install cheerio
 
