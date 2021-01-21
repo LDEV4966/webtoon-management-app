@@ -426,73 +426,30 @@ input[type="submit"] {
 /*Loading Page*/
 
 .circular {
-  position: relative;
+  position: absolute;
+  margin-top: 100px;
   width: 100px;
   height: 100px;
-  top: 25%;
-  transform: scale(0.8);
+  border-radius: 50%;
+  background-color: black;
+  clip: rect(0px, 85px, 100px, 0px);
+  animation: spin 1s linear infinite;
 }
 .circular .inner {
-  z-index: 6;
+  z-index: 1;
   position: absolute;
-  background-color: white;
+  background-color: #f5f6f7;
   width: 80px;
   height: 80px;
   top: 10%;
   left: 10%;
   border-radius: 50%;
 }
-.circular .inner__text {
-  z-index: 10;
-  position: absolute;
-  color: rgb(0, 0, 0);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: 500;
-}
-.circle .bar {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  background-color: white;
-  clip: rect(0px, 100px, 100px, 50px);
-}
-.circle .bar .progress {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  background-color: rgb(0, 0, 0);
-  clip: rect(0px, 50px, 100px, 0px);
-}
-.circle .left .progress {
-  z-index: 1;
-  animation: left 0.25s linear both;
-}
-@keyframes left {
+@keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(180deg);
-  }
-}
-.circle .right {
-  z-index: 3;
-  transform: rotate(180deg);
-}
-.circle .right .progress {
-  animation: right 0.25s linear both;
-  animation-delay: 0.25s;
-}
-@keyframes right {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
+    transform: rotate(360deg);
   }
 }

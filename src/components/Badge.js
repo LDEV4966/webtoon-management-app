@@ -3,11 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 const Badge = ({ favorite, siteName, userObj, titleId, day }) => {
   const axios = require("axios");
   const cheerio = require("cheerio");
-  let URL = `/webtoon/list.nhn?titleId=${titleId}`;
   const [updateDay, setUpdataDay] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
+  //
   const checkIsFav = useCallback(async () => {
     const exist = await (
       await dbService.doc(`${userObj.uid}/${siteName}/${day}/${titleId}`).get()
@@ -70,13 +69,13 @@ const Badge = ({ favorite, siteName, userObj, titleId, day }) => {
   };
 
   const updateInfo = useCallback(async () => {
-    const html = await axios.get(URL);
+    const html = await axios.get(`/list.nhn?titleId=${titleId}`);
     const $ = await cheerio.load(html.data);
     setUpdataDay($("td.num:first").text());
     if ($("td.title:first").children("img").attr("alt") === "UP") {
       setIsUpdate(true);
     }
-  }, [URL, axios, cheerio]);
+  }, [titleId, axios, cheerio]);
 
   useEffect(() => {
     if (favorite === false) {

@@ -1,6 +1,7 @@
 import React from "react";
 import Profile from "routes/Profile";
 import Naver from "routes/Naver";
+import Rezhin from "routes/Lezhin";
 import Auth from "routes/Auth";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./Navigation";
@@ -17,6 +18,9 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
             </Route>
             <Route exact path="/naver">
               <Naver userObj={userObj} />
+            </Route>
+            <Route exact path="/lezhin">
+              <Rezhin userObj={userObj} />
             </Route>
           </>
         ) : (

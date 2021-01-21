@@ -1,4 +1,5 @@
 import AltNavigation from "components/AltNavigation";
+import Loading from "components/Loading";
 import WebtoonsDayInfo from "components/WebtoonsDayInfo";
 import { dbService } from "fbase";
 import React, { useEffect, useState, useCallback } from "react";
@@ -9,7 +10,6 @@ const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 const Profile = ({ userObj }) => {
   const [dataInit, setDataInit] = useState(false);
   const [myWebtoons, setMyWebtoons] = useState({});
-
   const getFromFirestore = useCallback(() => {
     webtoonSites.forEach((siteName) => {
       days.forEach(async (day) => {
@@ -35,37 +35,41 @@ const Profile = ({ userObj }) => {
   }, [userObj]);
 
   useEffect(() => {
-    getFromFirestore();
+    if (userObj !== null) {
+      getFromFirestore();
+    }
     return () => {};
   }, [userObj, getFromFirestore]); //if userObj is changed, mount again that means it can executes getFromFirestore(); again with different User-uid.
 
   return (
     <div className="profile-mainscreen">
       <div className="webtoon_site__nav">
-        <AltNavigation myWebtoons={myWebtoons} />
+        <AltNavigation />
       </div>
       <h2 className="webtoon_site__title">My Webtoon</h2>
       <div className="list_area daily_all">
-        {dataInit
-          ? Object.keys(myWebtoons).map((siteName) => (
-              <>
-                <div className="devide_by_webtoon_site">
-                  {days.map((day) =>
-                    myWebtoons[siteName][day] ? (
-                      <WebtoonsDayInfo
-                        webtoonList={myWebtoons[siteName][day]}
-                        key={`${siteName}/${day}`}
-                        day={day}
-                        userObj={userObj}
-                        siteName={siteName}
-                        favorite={false}
-                      />
-                    ) : undefined
-                  )}
-                </div>
-              </>
-            ))
-          : undefined}
+        {dataInit ? (
+          Object.keys(myWebtoons).map((siteName) => (
+            <>
+              <div className="devide_by_webtoon_site">
+                {days.map((day) =>
+                  myWebtoons[siteName][day] ? (
+                    <WebtoonsDayInfo
+                      webtoonList={myWebtoons[siteName][day]}
+                      key={`${siteName}/${day}`}
+                      day={day}
+                      userObj={userObj}
+                      siteName={siteName}
+                      favorite={false}
+                    />
+                  ) : undefined
+                )}
+              </div>
+            </>
+          ))
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );
