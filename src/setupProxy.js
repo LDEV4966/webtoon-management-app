@@ -12,11 +12,5 @@ module.exports = (app) => {
         target: "https://comic.naver.com/webtoon",
         changeOrigin: true,
       })
-    ),
-    app.use(
-      createProxyMiddleware(`/ko`, {
-        target: "https://www.lezhin.com/",
-        changeOrigin: true,
-      })
-    );
+    )
 };
