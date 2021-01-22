@@ -69,7 +69,9 @@ const Badge = ({ favorite, siteName, userObj, titleId, day }) => {
   };
 
   const updateInfo = useCallback(async () => {
-    const html = await axios.get(`/list.nhn?titleId=${titleId}`);
+    const html = await axios.get(
+      `https://comic.naver.com/webtoon/list.nhn?titleId=${titleId}`
+    );
     const $ = await cheerio.load(html.data);
     setUpdataDay($("td.num:first").text());
     if ($("td.title:first").children("img").attr("alt") === "UP") {

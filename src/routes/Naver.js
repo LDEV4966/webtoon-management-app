@@ -16,7 +16,7 @@ const Naver = ({ userObj }) => {
   });
   const webtoonsKeys = Object.keys(webtoons);
   const getHtml = useCallback(async () => {
-    const html = await axios.get("/weekday.nhn");
+    const html = await axios.get("https://comic.naver.com/webtoon/weekday.nhn");
     const $ = await cheerio.load(html.data);
     $("div.daily_all div.col div.col_inner ul li").each((i, element) => {
       const title = $(element).find("div.thumb a img").attr("title");
