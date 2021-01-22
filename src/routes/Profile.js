@@ -50,22 +50,20 @@ const Profile = ({ userObj }) => {
       <div className="list_area daily_all">
         {dataInit ? (
           Object.keys(myWebtoons).map((siteName) => (
-            <>
-              <div className="devide_by_webtoon_site">
-                {days.map((day) =>
-                  myWebtoons[siteName][day] ? (
-                    <WebtoonsDayInfo
-                      webtoonList={myWebtoons[siteName][day]}
-                      key={`${siteName}/${day}`}
-                      day={day}
-                      userObj={userObj}
-                      siteName={siteName}
-                      favorite={false}
-                    />
-                  ) : undefined
-                )}
-              </div>
-            </>
+            <div className="devide_by_webtoon_site" key={siteName}>
+              {days.map((day) =>
+                myWebtoons[siteName][day] ? (
+                  <WebtoonsDayInfo
+                    webtoonList={myWebtoons[siteName][day]}
+                    key={days.indexOf(day)}
+                    day={day}
+                    userObj={userObj}
+                    siteName={siteName}
+                    favorite={false}
+                  />
+                ) : undefined
+              )}
+            </div>
           ))
         ) : (
           <Loading />

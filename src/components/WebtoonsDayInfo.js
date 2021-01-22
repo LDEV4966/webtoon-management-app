@@ -17,9 +17,9 @@ const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName, favorite }) => {
       <h3 className={"day"}> {day} </h3>
       <div className="col_inner">
         <ul>
-          {webtoonList.map((webtoon, counter) => {
+          {webtoonList.map((webtoon) => {
             return (
-              <li key={counter}>
+              <li key={webtoon.titleId}>
                 <div className="thumb">
                   <a href={webtoon.link} className="thumb__link">
                     <img
@@ -30,7 +30,6 @@ const WebtoonsDayInfo = ({ webtoonList, day, userObj, siteName, favorite }) => {
                   </a>
                   <span className="thumb__title">{webtoon.title}</span>
                   <Badge
-                    key={webtoon.titleId}
                     titleId={webtoon.titleId}
                     favorite={favorite}
                     siteName={siteName}
