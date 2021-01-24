@@ -17,7 +17,7 @@ html,css,javascript,react hooks
 ### 기술
 
 1. webscrapping
-- Library : how to use the Axios and Cheerio packages , Puppeteer
+- Library : how to use the Axios and Cheerio packages
 2. authentication 
 - based on Firebase auth
 3. realtime-database
@@ -31,3 +31,18 @@ html,css,javascript,react hooks
 *  npm install cheerio
 *  npm install http-proxy-middleware --save
 
+### 한계
+
+#### 1.  출처 리소스 공유( Cross-Origin Resource Sharing, CORS )
+
+ - Local 개발환경에  git pages나 별도의 서버에서 발생하는 CORS 문제 해결 실패
+ - Local 개발환경에서는 'http-proxy-middleware'를 이용한 proxy 서버를 이용하여 해결하였으나, 별도의 서버에서는 여전히 해결 못하는 듯 보임.
+ - CORS가 발생하는 이유는 보안상의 이유로 다른 사용자가 id, secret을 도용하여 api를 무단으로 호출하는 것을 막기 위해서이다. 
+ - 위를 해결하기 위해서는 서버 프로그래밍을 통해서만 데이터를 호출하도록 되어 있는데 아직 서버관련 지식이 부족해 추후에 보완예정임.
+ - 관련,  <a href="https://msyu1207.tistory.com/entry/React%EB%A1%9C-%EC%98%81%ED%99%94-%EA%B2%80%EC%83%89-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90-%EC%84%B8%EB%B2%88%EC%A7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-API-%EC%82%AC%EC%9A%A9-React-%EB%B0%B0%ED%8F%AC-CORS-%EC%84%A4%EC%A0%95-%ED%95%98%EA%B8%B0?category=906762">출처 사이트</a>
+
+
+#### 2.  타 웹툰사이트의 저작권
+
+ - 카카오페이지,레진 코믹스, 탑툰 등 네이버를 제외한 타 사이트의 web-scroll 이 restricted 되어 있어 scroll이 불가능 했음.
+ 
